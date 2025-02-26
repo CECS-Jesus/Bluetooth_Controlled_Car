@@ -9,10 +9,6 @@ void Motors::init() {
     motorDirectionInit();
 }
 
-//--------------------------------------------
-// These three initialization functions
-// match your original code exactly
-//--------------------------------------------
 void Motors::leftMotorInit() {
     SYSCTL_RCGCPWM_R  |= 0x01;
     SYSCTL_RCGCGPIO_R |= 0x02;
@@ -61,9 +57,6 @@ void Motors::motorDirectionInit() {
     GPIO_PORTE_DEN_R   |= 0x0F;
 }
 
-//--------------------------------------------
-// Same EXACT function logic as your original
-//--------------------------------------------
 void Motors::pwmDuty(unsigned long dutyL, unsigned long dutyR) {
     PWM0_0_CMPA_R = dutyR - 1;
     PWM0_0_CMPB_R = dutyL - 1;
@@ -74,7 +67,6 @@ unsigned long Motors::getCurrDuty() {
 }
 
 void Motors::incrementSpeed() {
-    // EXACT copy from your original:
     // if (currDuty + SPEED_STEP < PERIOD) currDuty += SPEED_STEP; else currDuty = PERIOD - 1;
     if((currDuty + SPEED_STEP) < PERIOD) {
         currDuty += SPEED_STEP;
@@ -85,8 +77,6 @@ void Motors::incrementSpeed() {
 }
 
 void Motors::decrementSpeed() {
-    // EXACT copy from your original:
-    // if (0 < currDuty - SPEED_STEP) currDuty -= SPEED_STEP; else currDuty = STOP;
     if(0 < (currDuty - SPEED_STEP)) {
         currDuty -= SPEED_STEP;
     } else {
@@ -94,23 +84,3 @@ void Motors::decrementSpeed() {
     }
     pwmDuty(currDuty, currDuty);
 }
-
-//--------------------------------------------
-// Old C function wrappers
-//--------------------------------------------
-void Motors_Init(void) {
-    Motors::init();
-}
-void PWM_Duty(unsigned long dutyL, unsigned long dutyR) {
-    Motors::pwmDuty(dutyL, dutyR);
-}
-unsigned long GetCurrDuty(void) {
-    return Motors::getCurrDuty();
-}
-void IncrementSpeed(void) {
-    Motors::incrementSpeed();
-}
-void DecrementSpeed(void) {
-    Motors::decrementSpeed();
-}
-
