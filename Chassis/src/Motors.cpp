@@ -1,6 +1,6 @@
 #include "Motors.h"
 
-uint64_t Motors::currDuty = STOP; // same name as original
+uint64_t Motors::currDuty = STOP;
 
 void Motors::init() {
     currDuty = STOP;
