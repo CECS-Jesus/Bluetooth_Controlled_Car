@@ -8,7 +8,7 @@ int main(void) {
     // Create UART0 and Bluetooth objects
     UART0 pc;
     Bluetooth blt;
-
+    
     // Initialize both
     pc.init();
     blt.init();
