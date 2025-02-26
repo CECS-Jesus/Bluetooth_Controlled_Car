@@ -10,14 +10,7 @@
 #define HALF_SPEED  (PERIOD * 0.5)
 #define SPEED_STEP  (PERIOD * 0.1)
 
-// Same old function prototypes
-void Motors_Init(void);
-void PWM_Duty(unsigned long dutyL, unsigned long dutyR);
-unsigned long GetCurrDuty(void);
-void IncrementSpeed(void);
-void DecrementSpeed(void);
-
-// C++ class
+// C++ Motors class
 class Motors {
 public:
     static void init();
@@ -29,7 +22,7 @@ private:
     static void leftMotorInit();
     static void rightMotorInit();
     static void motorDirectionInit();
-    static uint64_t currDuty; // same name, same type as your original
+    static uint64_t currDuty;
 };
 
 #endif // MOTORS_H
